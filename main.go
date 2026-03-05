@@ -29,7 +29,7 @@ func main() {
 		w.Header().Set("Content-Type","text/html; charset=utf-8")
 		w.Write([]byte(`<!doctype html>
 		<html lang="ja">
-		<head><meta charset="utf-8"><title>hello-go<title></head>
+		<head><meta charset="utf-8"><title>hello-go</title></head>
 		<body>
 			<h1>んなー</h1>
 			<ul>
