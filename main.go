@@ -25,6 +25,21 @@ func main() {
 	r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)
 
+	r.Get("/", func(w http.ResponseWriter,r *http.Request){
+		w.Header().Set("Content-Type","text/html; charset=utf-8")
+		w.Write([]byte(`<!doctype html>
+		<html lang="ja">
+		<head><meta charset="utf-8"><title>hello-go<title></head>
+		<body>
+			<h1>んなー</h1>
+			<ul>
+				<li><a href="/health">/health</a></li>
+				<li><a href="/items/1">/items/1</a></li>
+			</ul>
+		</body>
+		</html>`))
+	})
+
 	// るーと定義
 	r.Get("/health", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("ok\n"))
@@ -59,14 +74,3 @@ func getItem(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	json.NewEncoder(w).Encode(item)
 }
-
-/*
-{
-	http.HandleFunc("/",func(w http.ResponseWriter,r *http.Request) {
-		w.Write([]byte("ok\n"))
-	})
-	log.Println("listening on :8080")
-	log.Fatal(http.ListenAndServe(":8080",nil))
-}
-
-*/
